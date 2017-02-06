@@ -50,19 +50,19 @@ public class EightQueenApp {
         EMPTY, QUEEN, NON_USABLE;
     }
 
-    public static class Pos {
+    static class Pos {
         int x, y;
 
-        public Pos(int x, int y) {
+        Pos(int x, int y) {
             this.x = x;
             this.y = y;
         }
         
-        public static Pos of(final int x, final int y) {
+        static Pos of(final int x, final int y) {
             return new Pos(x, y); 
         }
 
-        public boolean isValid (){
+        boolean isValid (){
             return x < BOARD_SIZE && y < BOARD_SIZE && x >= 0 && y >= 0;
         }
     }
@@ -78,7 +78,7 @@ public class EightQueenApp {
             }
         }
 
-        public void print() {
+        void print() {
             for (int i = 0; i < states.size(); i++) {
                 if (i%BOARD_SIZE == 0) {
                     System.out.println();
@@ -101,7 +101,7 @@ public class EightQueenApp {
             System.out.println();
         }
 
-        public void mark(Pos p, State s) {
+        void mark(Pos p, State s) {
             if(usableLeft == 0 || !p.isValid()) return;
 
             final int index = p.x * BOARD_SIZE + p.y;
@@ -111,7 +111,7 @@ public class EightQueenApp {
             }
         }
         
-        public void markNonUsableFromQueenPos(Pos queenPos) {
+        void markNonUsableFromQueenPos(Pos queenPos) {
             // mark horizontal
             for (int y = queenPos.y + 1; y < BOARD_SIZE; y++) {
                 Pos pos = Pos.of(queenPos.x, y);
@@ -133,7 +133,7 @@ public class EightQueenApp {
             }
         }
 
-        public State getState(final Pos p) {
+        State getState(final Pos p) {
             return states.get(p.x * BOARD_SIZE + p.y);
         }
 
